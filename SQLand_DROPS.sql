@@ -1,14 +1,14 @@
-use SQLand;
+use SQLand_P2;
 ------------ DROPS -------------
-ALTER TABLE DEPARTMENT drop constraint Location_ID;			
-ALTER TABLE EMPLOYEE drop constraint Dept_ID;
+ALTER TABLE DEPARTMENT drop constraint DeptLoc;			
+ALTER TABLE EMPLOYEE drop constraint EmpDept;
 ALTER TABLE SECTION drop constraint Location_ID;
 ALTER TABLE ATTRACTION drop constraint Park_Section;
 ALTER TABLE FOOD_BEVERAGE drop constraint Park_Section;
 ALTER TABLE LIVE_ENTERTAINMENT drop constraint Park_Section;
 ALTER TABLE CHARACTER_EXPERIENCE drop constraint Park_Section;
 ALTER TABLE FIRST_AID drop constraint Park_Section;
-ALTER TABLE PHOTO_BOOTH drop constraint Park_Section, Event_ID; //maybe 1 more?
+ALTER TABLE PHOTO_BOOTH drop constraint Park_Section, Event_ID; --//maybe 1 more?
 ALTER TABLE MERCHANDISE drop constraint Park_Section;
 ALTER TABLE TICKET drop constraint Location_ID;
 ALTER TABLE HOTEL drop constraint Park_ID;
@@ -31,3 +31,4 @@ DROP TABLE HOTEL;
 DROP TABLE TRANSPORTATION;
 DROP TABLE SELLS_MERCH;
 DROP TABLE EMPLOYEE_AUDIT;
+--DROP TABLE TICKET_AUDIT;
