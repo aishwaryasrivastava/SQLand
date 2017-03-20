@@ -1,4 +1,4 @@
-use SQLand;
+use SQLand_P2;
 ---------------------------- CREATE -----------------------
 CREATE TABLE PARK
 (
@@ -17,7 +17,7 @@ CREATE TABLE DEPARTMENT
   Description varchar(140),
   Location_ID char(5) NOT NULL,
   PRIMARY KEY (Dept_ID),
-  FOREIGN KEY (Location_ID) REFERENCES PARK(Location_ID)
+  CONSTRAINT DeptLoc FOREIGN KEY (Location_ID) REFERENCES PARK(Location_ID)
 );
 
 CREATE TABLE EMPLOYEE
@@ -29,7 +29,7 @@ CREATE TABLE EMPLOYEE
   Address varchar(30) NOT NULL,
   Dept_ID char(10) NOT NULL,
   PRIMARY KEY (Employee_ID),
-  FOREIGN KEY (Dept_ID) REFERENCES DEPARTMENT(Dept_ID)
+  CONSTRAINT EmpDept FOREIGN KEY (Dept_ID) REFERENCES DEPARTMENT(Dept_ID)
 );
 
 CREATE TABLE SECTION
@@ -100,7 +100,7 @@ CREATE TABLE PHOTO_BOOTH
   FOREIGN KEY (Park_Section) REFERENCES SECTION(Name),
   FOREIGN KEY (Event_ID) REFERENCES ATTRACTION(Attraction_ID), 
   FOREIGN KEY (Event_ID) REFERENCES CHARACTER_EXPERIENCE(Exp_Id)
- --Add a check for event ID (= event(eventid).park section = this.parksection) 
+ --Add a check for event ID (= event(eventid).park section = this.parksection)
 );
 
 CREATE TABLE MERCHANDISE
@@ -232,9 +232,9 @@ INSERT INTO MERCHANDISE values
 ('ME03000004', 'Space gift store', 'SpaceLand');
 
 INSERT INTO HOTEL values
-('39', 'Bob Feller', '0000000001', 1, 2016-03-09, 2016-03-10,11, 'P', '11111'),
-('02', 'Jimmy John', '0000000005', 3, 2016-05-10, 2016-05-14,11, 'P', '22222'),
-('10', 'Ankeeta Smith', '0000000008', 2, 2016-07-09, 2016-07,11, 'P', '33333');
+(39, 'Bob Feller', '0000000001', 1, '2016-03-09', '2016-03-10', 'P', '11111'),
+(20, 'Jimmy John', '0000000005', 3, '2016-05-10', '2016-05-14', 'P', '22222'),
+(10, 'Ankeeta Smith', '0000000008', 2, '2016-07-09', '2016-07-11', 'P', '33333');
 
 INSERT INTO PARK
 values
@@ -288,15 +288,15 @@ values
 ('TR03000002', 'S', 'ToonLand');
 
 INSERT INTO TICKET values
-('TI00000001', 'Bob Feller', '6147875098', '5656 Wyandotte Blvd', 27, 2016-05-07, '11111'),
-('TI00000002', 'John Babbledoo', '9374859023', '2405 Running Way', 21, 2016-07-23, '11111'),
-('TI00000003', 'Blue Ivy Carter', '2739504442', '103 Charlotte St. Apt. B', 5, 2016-08-17, '11111'),
-('TI00000005', 'Jimmy John', '9032345676', '256 Brand Blvd', 16, 2016-06-23, '22222'),
-('TI00000006', 'Natasha Montague', '3026752345', '9053 Critter Ct.', 33, 2016-03-23, '22222'),
-('TI00000007', 'Tosh McDanielson', '2423941010', '1024 Tribe St.', 45, 2016-04-01, '22222'),
-('TI00000008', 'Ankeeta Smith', '6145762323', '576 Buttermilk Blvd.', 16, 2016-12-05, '33333'),
-('TI00000009', 'Mark Zuckabug', '4348951627', '67 Millionaire Rd.', 32, 2016-23-05, '33333'),
-('TI00000010', 'Jessica Jones', '9031205485', '90 Bluff Point Way', 27, 2016-04-20, '33333');
+('TI00000001', 'Bob Feller', '6147875098', '5656 Wyandotte Blvd', 27, '2016-05-07', '11111'),
+('TI00000002', 'John Babbledoo', '9374859023', '2405 Running Way', 21, '2016-07-23', '11111'),
+('TI00000003', 'Blue Ivy Carter', '2739504442', '103 Charlotte St. Apt. B', 5, '2016-08-17', '11111'),
+('TI00000005', 'Jimmy John', '9032345676', '256 Brand Blvd', 16, '2016-06-23', '22222'),
+('TI00000006', 'Natasha Montague', '3026752345', '9053 Critter Ct.', 33, '2016-03-23', '22222'),
+('TI00000007', 'Tosh McDanielson', '2423941010', '1024 Tribe St.', 45, '2016-04-01', '22222'),
+('TI00000008', 'Ankeeta Smith', '6145762323', '576 Buttermilk Blvd.', 16, '2016-12-05', '33333'),
+('TI00000009', 'Mark Zuckabug', '4348951627', '67 Millionaire Rd.', 32, '2016-23-05', '33333'),
+('TI00000010', 'Jessica Jones', '9031205485', '90 Bluff Point Way', 27, '2016-04-20', '33333');
 
 INSERT INTO SELLS_MERCH values
 ('ME01000001', 'IT001'),
@@ -366,7 +366,7 @@ AS
 PRINT 'AFTER INSERT trigger fired.'
 GO
 
-CREATE TRIGGER trgAfterUpdateOnTicket ON TICKET_INFO
+CREATE TRIGGER trgAfterUpdateOnTicket ON TICKET
 AFTER UPDATE
 AS
 	declare @ticID char(10);
