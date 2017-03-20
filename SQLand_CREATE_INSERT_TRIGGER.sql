@@ -165,13 +165,20 @@ CREATE TABLE SELLS_MERCH
   FOREIGN KEY (Item_ID) REFERENCES ITEM(Item_ID)
 );
 
-CREATE TABLE Employee_Audit
+CREATE TABLE EMPLOYEE_AUDIT
 (EmpID char(9), 
 EmpSSN char(9),
 EmpName varchar(30),
 EmpDeptID char(10),
 Audit_Action varchar(100),
 Audit_TimeStamp datetime);
+
+CREATE TABLE TICKET_AUDIT
+(TicID char(10), 
+TicName varchar(30),
+Audit_Action varchar(100),
+Audit_TimeStamp datetime);
+
 
 -------------------------- INSERTS --------------------------
 
@@ -342,10 +349,10 @@ CREATE TRIGGER trgAfterUpdateOnEmployee ON EMPLOYEE
 AFTER UPDATE
 AS
 	declare @empID char(9);
-	Declare @empSSN char(9);
-	Declare @empName varchar(30);
-	Declare @empDeptID char(10);
-	Declare @audit_action varchar(100);
+	declare @empSSN char(9);
+	declare @empName varchar(30);
+	declare @empDeptID char(10);
+	declare @audit_action varchar(100);
 
 	Select @empID = i.Employee_ID from inserted i;
 	Select @empSSN = i.SSN from inserted i;
@@ -353,9 +360,25 @@ AS
 	Select @empDeptID = i.Dept_ID from inserted i;
 	Set @audit_action = 'Inserted record -- After insert trigger.';
 
-
-	Insert into Employee_Audit
+	Insert into EMPLOYEE_AUDIT
 	(EmpID, EmpSSN, EmpName, EmpDeptID, Audit_Action, Audit_TimeStamp) values (@empID, @empSSN, @empName, @empDeptID, @audit_action, getdate());
+
+PRINT 'AFTER INSERT trigger fired.'
+GO
+
+CREATE TRIGGER trgAfterUpdateOnTicket ON TICKET_INFO
+AFTER UPDATE
+AS
+	declare @ticID char(10);
+	declare @ticName varchar(30);
+	declare @audit_action varchar(100);
+	
+	Select @ticID = i.Ticket_ID from inserted i;
+	Select @ticName= i.Holder_Name from inserted i;
+	Set @audit_action = 'Inserted record -- After insert trigger.';
+
+	Insert into TICKET_AUDIT
+	(TicID, TicName, Audit_Action, Audit_TimeStamp) values (@ticID, @ticName, @audit_action, getdate());
 
 PRINT 'AFTER INSERT trigger fired.'
 GO
