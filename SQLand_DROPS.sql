@@ -1,18 +1,18 @@
 ------------ DROPS -------------
-ALTER TABLE DEPARTMENT drop constraint Location_ID;			
-ALTER TABLE EMPLOYEE drop constraint Dept_ID;
-ALTER TABLE SECTION drop constraint Location_ID;
-ALTER TABLE ATTRACTION drop constraint Park_Section;
-ALTER TABLE FOOD_BEVERAGE drop constraint Park_Section;
-ALTER TABLE LIVE_ENTERTAINMENT drop constraint Park_Section;
-ALTER TABLE CHARACTER_EXPERIENCE drop constraint Park_Section;
-ALTER TABLE FIRST_AID drop constraint Park_Section;
-ALTER TABLE PHOTO_BOOTH drop constraint Park_Section, Event_ID; //maybe 1 more?
-ALTER TABLE MERCHANDISE drop constraint Park_Section;
-ALTER TABLE TICKET drop constraint Location_ID;
-ALTER TABLE HOTEL drop constraint Park_ID;
-ALTER TABLE TRANSPORTATION drop constraint Park_Section;
-ALTER TABLE SELLS_MERCH drop constraint Store_ID, Item_ID;
+ALTER TABLE DEPARTMENT drop constraint Dept_Location_ID;			
+ALTER TABLE EMPLOYEE drop constraint Employee_Dept_ID;
+ALTER TABLE SECTION drop constraint Section_Location_ID;
+ALTER TABLE ATTRACTION drop constraint Attr_Park_Section;
+ALTER TABLE FOOD_BEVERAGE drop constraint FB_Park_Section;
+ALTER TABLE LIVE_ENTERTAINMENT drop constraint LE_Park_Section;
+ALTER TABLE CHARACTER_EXPERIENCE drop constraint CE_Park_Section;
+ALTER TABLE FIRST_AID drop constraint FA_Park_Section;
+ALTER TABLE PHOTO_BOOTH drop constraint PH_Park_Section, PH_Attr_Event_ID, PH_CE_Event_ID;
+ALTER TABLE MERCHANDISE drop constraint Merch_Park_Section;
+ALTER TABLE TICKET drop constraint Ticket_Location_ID;
+ALTER TABLE HOTEL drop constraint Hotel_Park_ID;
+ALTER TABLE TRANSPORTATION drop constraint Trans_Park_Section;
+ALTER TABLE SELLS_MERCH drop constraint Sell_Merch_Store_ID, Sell_Merch_Item_ID;
 DROP TABLE PARK;
 DROP TABLE DEPARTMENT;
 DROP TABLE EMPLOYEE;
