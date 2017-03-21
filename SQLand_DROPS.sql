@@ -1,4 +1,3 @@
-use SQLand;
 ------------ DROPS -------------
 ALTER TABLE DEPARTMENT drop constraint Location_ID;			
 ALTER TABLE EMPLOYEE drop constraint Dept_ID;
