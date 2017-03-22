@@ -1,4 +1,4 @@
-use SQLand_PHASE2;
+use SQLand;
 ---------------------------- CREATE -----------------------
 
 CREATE TABLE PARK
@@ -166,43 +166,45 @@ Audit_TimeStamp datetime);
 -------------------------- INSERTS --------------------------
 
 INSERT INTO PARK values
-('11111', 'COLUMBUS', 'OH', '43210'),
-('22222', 'BURBANK', 'CA', '91501'),
-('33333', 'CHARLOTTE', 'NC', '28105');
+('PRKOH', 'COLUMBUS',	'OH', '43210'),
+('PRKCA', 'BURBANK',	'CA', '91501'),
+('PRKNC', 'CHARLOTTE',	'NC', '28105');
 
 INSERT INTO DEPARTMENT values
-('DP01000001', 'CORPORATE', '6145472295', 'Corporate Dept at Columbus', '11111'),
-('DP01000002', 'OPERATIONS', '6145472296', 'Operations Dept at Columbus', '11111'),
-('DP02000001', 'CORPORATE', '6145472297', 'Corporate Dept at Columbus', '22222'),
-('DP02000002', 'OPERATIONS', '6145472298', 'Operations Dept at Columbus', '22222'),
-('DP03000001', 'CORPORATE', '6145472299', 'Corporate Dept at Columbus', '33333'),
-('DP03000002', 'OPERATIONS', '614547300', 'Operations Dept at Columbus', '33333');
+('DP01000001', 'CORPORATE',	'6145472295', 'Corporate Dept at Columbus',	'PRKOH'),
+('DP01000002', 'OPERATIONS',	'6145472296', 'Operations Dept at Columbus',	'PRKOH'),
+('DP02000001', 'CORPORATE',	'8185472297', 'Corporate Dept at Burbank',	'PRKCA'),
+('DP02000002', 'OPERATIONS',	'8185472298', 'Operations Dept at Burbank',	'PRKCA'),
+('DP03000001', 'CORPORATE',	'7045472299', 'Corporate Dept at Charlotte',	'PRKNC'),
+('DP03000002', 'OPERATIONS',	'7045473060', 'Operations Dept at Charlotte',	'PRKNC');
 
 INSERT INTO EMPLOYEE values
-('111111111', '222222221', 'Joyce Wallace', '6141234567', '67 Sunset Drive', 'DP01000001'),
-('111111112', '222222222', 'Joyce Wallace', '6141234567', '67 Sunset Drive', 'DP01000001'),
-('111111113', '222222223', 'Joyce Wallace', '6141234567', '67 Sunset Drive', 'DP01000001'),
-('111111114', '222222224', 'Joyce Wallace', '6141234567', '67 Sunset Drive', 'DP01000001');
+('EMP000001', '739401758', 'Joyce Wallace',	'6141234567', '67 Roosevelt Drive',	'DP01000001'),
+('EMP000002', '493730111', 'Harley Dukes',	'6140167890', '500 Washington Park',	'DP01000002'),
+('EMP000003', '013759273', 'Bruce Jacobs',	'8184928376', '120 Carter Avenue',	'DP02000001'),
+('EMP000004', '926394184', 'Mary Nicholes',	'8180362957', '120 Hamilton Blvd',	'DP02000002'),
+('EMP000005', '175649278', 'Eric Green',	'7049037622', '01 Lincoln Rd',		'DP03000001'),
+('EMP000006', '749658301', 'Charles Davis',	'7043891635', '01 Raegen St',		'DP03000002');
 
 INSERT INTO SECTION values
-('WaterLand', '11111'),
-('HorrorLand', '22222'),
-('ToonLand', '11111'),
-('SpaceLand', '33333');
+('WaterLand', 'PRKOH'),
+('HorrorLand', 'PRKCA'),
+('ToonLand', 'PRKOH'),
+('SpaceLand', 'PRKNC');
 
 INSERT INTO ATTRACTION values
-('0000100001', 'Water slide', 'Its a water slide in California!', 'WaterLand'), 
-('0000100002', 'Haunted Mansion', 'California Boo!', 'HorrorLand'), 
-('0000100003', '3D Show', 'Its a 3D show in California!', 'ToonLand'), 
-('0000100004', 'Space ride', 'Its a space ride in California!', 'SpaceLand'), 
-('0000200001', 'Water slide', 'Its a water slide in Ohio!', 'WaterLand'), 
-('0000200002', 'Haunted Mansion', 'Ohio Boo!', 'HorrorLand'), 
-('0000200003', '3D Show', 'Its a 3D show in Ohio!', 'ToonLand'), 
-('0000200004', 'Space ride', 'Its a space ride in Ohio!', 'SpaceLand'), 
-('0000300001', 'Water slide', 'Its a water slide in NC!', 'WaterLand'), 
-('0000300002', 'Haunted Mansion', 'NC Boo!', 'HorrorLand'), 
-('0000300003', '3D Show', 'Its a 3D show in NC!', 'ToonLand'), 
-('0000300004', 'Space ride', 'Its a space ride in NC!', 'SpaceLand');
+('0000100001', 'Water slide',		'Its a water slide in California!',	'WaterLand'), 
+('0000100002', 'Haunted Mansion',	'California Boo!',			'HorrorLand'), 
+('0000100003', '3D Show',		'Its a 3D show in California!',		'ToonLand'), 
+('0000100004', 'Space ride',		'Its a space ride in California!',	'SpaceLand'), 
+('0000200001', 'Water slide',		'Its a water slide in Ohio!',		'WaterLand'), 
+('0000200002', 'Haunted Mansion',	'Ohio Boo!',				'HorrorLand'), 
+('0000200003', '3D Show',		'Its a 3D show in Ohio!',		'ToonLand'), 
+('0000200004', 'Space ride',		'Its a space ride in Ohio!',		'SpaceLand'), 
+('0000300001', 'Water slide',		'Its a water slide in NC!',		'WaterLand'), 
+('0000300002', 'Haunted Mansion',	'NC Boo!',				'HorrorLand'), 
+('0000300003', '3D Show',		'Its a 3D show in NC!',			'ToonLand'), 
+('0000300004', 'Space ride',		'Its a space ride in NC!',		'SpaceLand');
 
 INSERT INTO FOOD_BEVERAGE values
 ('FB01000001', 'Remys', 'Remys Fresh Foods', 'S', 'ToonLand'),
@@ -217,22 +219,22 @@ INSERT INTO LIVE_ENTERTAINMENT values
 ('LE01000002', '19:00:00', '20:00:00', '2', 'WaterLand'),
 ('LE02000001', '13:30:00', '14:00:00', '1', 'HorrorLand'),
 ('LE02000002', '18:30:00', '19:30:00', '1', 'SpaceLand'),
-('LE03000001', '12:30:00', '1:00:00', '2', 'WaterLand'),
+('LE03000001', '12:30:00', '1:00:00',  '2', 'WaterLand'),
 ('LE03000002', '14:30:00', '15:30:00', '1', 'HorrorLand');
 
 INSERT INTO CHARACTER_EXPERIENCE values 
-('CE01000001', '08:00:00', '09:00:00', 'Meet a ghost!', 'HorrorLand'),
-('CE01000002', '09:00:00', '10:00:00', 'Meet an astronaut!', 'SpaceLand'),
-('CE01000003', '10:00:00', '11:00:00', 'Meet a cartoon!', 'ToonLand'),
-('CE01000004', '11:00:00', '12:00:00', 'Meet a mermaid!', 'WaterLand'),
-('CE02000001', '08:00:00', '09:00:00', 'Meet a ghost!', 'HorrorLand'),
-('CE02000002', '09:00:00', '10:00:00', 'Meet an astronaut!', 'SpaceLand'),
-('CE02000003', '10:00:00', '11:00:00', 'Meet a cartoon!', 'ToonLand'),
-('CE02000004', '11:00:00', '12:00:00', 'Meet a mermaid!', 'WaterLand'),
-('CE03000001', '08:00:00', '09:00:00', 'Meet a ghost!', 'HorrorLand'),
-('CE03000002', '09:00:00', '10:00:00', 'Meet an astronaut!', 'SpaceLand'),
-('CE03000003', '10:00:00', '11:00:00', 'Meet a cartoon!', 'ToonLand'),
-('CE03000004', '11:00:00', '12:00:00', 'Meet a mermaid!', 'WaterLand');
+('CE01000001', '08:00:00', '09:00:00', 'Meet a ghost!',		'HorrorLand'),
+('CE01000002', '09:00:00', '10:00:00', 'Meet an astronaut!',	'SpaceLand'),
+('CE01000003', '10:00:00', '11:00:00', 'Meet a cartoon!',	'ToonLand'),
+('CE01000004', '11:00:00', '12:00:00', 'Meet a mermaid!',	'WaterLand'),
+('CE02000001', '08:00:00', '09:00:00', 'Meet a ghost!',		'HorrorLand'),
+('CE02000002', '09:00:00', '10:00:00', 'Meet an astronaut!',	'SpaceLand'),
+('CE02000003', '10:00:00', '11:00:00', 'Meet a cartoon!',	'ToonLand'),
+('CE02000004', '11:00:00', '12:00:00', 'Meet a mermaid!',	'WaterLand'),
+('CE03000001', '08:00:00', '09:00:00', 'Meet a ghost!',		'HorrorLand'),
+('CE03000002', '09:00:00', '10:00:00', 'Meet an astronaut!',	'SpaceLand'),
+('CE03000003', '10:00:00', '11:00:00', 'Meet a cartoon!',	'ToonLand'),
+('CE03000004', '11:00:00', '12:00:00', 'Meet a mermaid!',	'WaterLand');
 
 INSERT INTO FIRST_AID values
 ('FA01000001', 'HorrorLand'),
@@ -245,45 +247,58 @@ INSERT INTO FIRST_AID values
 INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_Attr_Event_ID) values
 ('PB01000001', 'WaterLand', '0000100001');
 INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_CE_Event_ID) values
-('PB01000002', 'SpaceLand', 'CE03000001');
+('PB01000002', 'SpaceLand', 'CE01000001');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_Attr_Event_ID) values
+('PB02000001', 'HorrorLand', '0000200002');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_CE_Event_ID) values
+('PB02000002', 'ToonLand', 'CE02000002');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_Attr_Event_ID) values
+('PB03000001', 'WaterLand', '0000300003');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_CE_Event_ID) values
+('PB03000002', 'SpaceLand', 'CE03000003');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_Attr_Event_ID) values
+('PB04000001', 'HorrorLand', '0000300004');
+INSERT INTO PHOTO_BOOTH (Booth_ID, PH_Park_Section, PH_CE_Event_ID) values
+('PB04000002', 'ToonLand', 'CE03000004');
 
 INSERT INTO MERCHANDISE values
-('ME01000001', 'Horror gift store', 'HorrorLand'),
-('ME01000002', 'Sea life gift store', 'WaterLand'),
-('ME01000003', 'Cartoon gift store', 'ToonLand'),
-('ME01000004', 'Space gift store', 'SpaceLand'),
-('ME02000001', 'Horror gift store', 'HorrorLand'),
-('ME02000002', 'Sea life gift store', 'WaterLand'),
-('ME02000003', 'Cartoon gift store', 'ToonLand'),
-('ME02000004', 'Space gift store', 'SpaceLand'),
-('ME03000001', 'Horror gift store', 'HorrorLand'),
-('ME03000002', 'Sea life gift store', 'WaterLand'),
-('ME03000003', 'Cartoon gift store', 'ToonLand'),
-('ME03000004', 'Space gift store', 'SpaceLand');
+('ME01000001', 'Horror gift store',	'HorrorLand'),
+('ME01000002', 'Sea life gift store',	'WaterLand'),
+('ME01000003', 'Cartoon gift store',	'ToonLand'),
+('ME01000004', 'Space gift store',	'SpaceLand'),
+('ME02000001', 'Horror gift store',	'HorrorLand'),
+('ME02000002', 'Sea life gift store',	'WaterLand'),
+('ME02000003', 'Cartoon gift store',	'ToonLand'),
+('ME02000004', 'Space gift store',	'SpaceLand'),
+('ME03000001', 'Horror gift store',	'HorrorLand'),
+('ME03000002', 'Sea life gift store',	'WaterLand'),
+('ME03000003', 'Cartoon gift store',	'ToonLand'),
+('ME03000004', 'Space gift store',	'SpaceLand');
 
 INSERT INTO ITEM values
 ('IT001', '12', 'Theme Park Toys'),
 ('IT002', '25', 'Reel Vogue'),
 ('IT003', '30', 'Gepettos'),
 ('IT004', '10', 'Waynes'),
-('IT005', '8', 'CK'),
+('IT005', '8',	'CK'),
 ('IT006', '50', 'Queens');
 
 INSERT INTO TICKET values
-('TI00000001', 'Bob Feller', '6147875098', '5656 Wyandotte Blvd', 27, '2016-05-07', '11111'),
-('TI00000002', 'John Babbledoo', '9374859023', '2405 Running Way', 21, '2016-07-23', '11111'),
-('TI00000003', 'Blue Ivy Carter', '2739504442', '103 Charlotte St. Apt. B', 5, '2016-08-17', '11111'),
-('TI00000005', 'Jimmy John', '9032345676', '256 Brand Blvd', 16, '2016-06-23', '22222'),
-('TI00000006', 'Natasha Montague', '3026752345', '9053 Critter Ct.', 33, '2016-03-23', '22222'),
-('TI00000007', 'Tosh McDanielson', '2423941010', '1024 Tribe St.', 45, '2016-04-01', '22222'),
-('TI00000008', 'Ankeeta Smith', '6145762323', '576 Buttermilk Blvd.', 16, '2016-12-05', '33333'),
-('TI00000009', 'Mark Zuckabug', '4348951627', '67 Millionaire Rd.', 32, '2016-05-05', '33333'),
-('TI00000010', 'Jessica Jones', '9031205485', '90 Bluff Point Way', 27, '2016-04-20', '33333');
+('TI00000001', 'Bob Feller',		'6147875098', '5656 Wyandotte Blvd',		27, '2016-05-07', 'PRKOH'),
+('TI00000002', 'John Babbledoo',	'9374859023', '2405 Running Way',		21, '2016-07-23', 'PRKOH'),
+('TI00000003', 'Blue Ivy Carter',	'2739504442', '103 Charlotte St. Apt. B',	05, '2016-08-17', 'PRKOH'),
+('TI00000005', 'Jimmy John',		'9032345676', '256 Brand Blvd',			16, '2016-06-23', 'PRKCA'),
+('TI00000006', 'Natasha Montague',	'3026752345', '9053 Critter Ct.',		33, '2016-03-23', 'PRKCA'),
+('TI00000007', 'Tosh McDanielson',	'2423941010', '1024 Tribe St.',			45, '2016-04-01', 'PRKCA'),
+('TI00000008', 'Ankeeta Smith',		'6145762323', '576 Buttermilk Blvd.',		16, '2016-12-05', 'PRKNC'),
+('TI00000009', 'Mark Zuckabug',		'4348951627', '67 Millionaire Rd.',		32, '2016-05-05', 'PRKNC'),
+('TI00000010', 'Jessica Jones',		'9031205485', '90 Bluff Point Way',		27, '2016-04-20', 'PRKNC');
 
 INSERT INTO HOTEL values
-('39', 'Bob Feller', '0000000001', 1, '2016-03-09', '2016-03-10','P', '11111'),
-('02', 'Jimmy John', '0000000005', 3, '2016-05-10', '2016-05-14','S', '22222'),
-('10', 'Ankeeta Smith', '0000000008', 2, '2016-07-09', '2016-07-11','D', '33333');
+('39', 'Bob Feller',	'TI00000001', 1, '2016-03-09', '2016-03-10','P', 'PRKOH'),
+('02', 'Jimmy John',	'TI00000005', 3, '2016-05-10', '2016-05-14','S', 'PRKCA'),
+('10', 'Ankeeta Smith', 'TI00000008', 2, '2016-07-09', '2016-07-11','D', 'PRKNC'),
+('22', 'Jessica Jones', 'TI00000010', 1, '2017-01-04', '2017-01-06','P', 'PRKNC');
 
 INSERT INTO TRANSPORTATION values
 ('TR01000001', 'M', 'WaterLand'),
@@ -329,7 +344,7 @@ ALTER TABLE SELLS_MERCH add constraint MerchID FOREIGN KEY(Sell_Merch_Item_ID) R
 GO
 ------------------------- TRIGGERS -----------------------
 
-CREATE TRIGGER trgAfterUpdateEmployee2 ON EMPLOYEE
+CREATE TRIGGER EmpUpdateTrigger ON EMPLOYEE
 AFTER UPDATE
 AS
 	declare @empID char(9);
@@ -342,15 +357,15 @@ AS
 	Select @empSSN = i.SSN from inserted i;
 	Select @empName = i.Name from inserted i;
 	Select @empDeptID = i.Employee_Dept_ID from inserted i;
-	Set @audit_action = 'Inserted record -- After insert trigger.';
+	Set @audit_action = 'Inserted record -- After update trigger on EMPLOYEE.';
 
 	Insert into EMPLOYEE_AUDIT
 	(EmpID, EmpSSN, EmpName, EmpDeptID, Audit_Action, Audit_TimeStamp) values (@empID, @empSSN, @empName, @empDeptID, @audit_action, getdate());
 
-PRINT 'AFTER INSERT trigger fired.'
+PRINT 'AFTER UPDATE on EMPLOYEE trigger fired.'
 GO
 
-CREATE TRIGGER trgAfterUpdateTicket3 ON TICKET
+CREATE TRIGGER TicketUpdateTrigger ON TICKET
 AFTER UPDATE
 AS
 	declare @ticID char(10);
@@ -359,11 +374,10 @@ AS
 	
 	Select @ticID = i.Ticket_ID from inserted i;
 	Select @ticName= i.Holder_Name from inserted i;
-	Set @audit_action = 'Inserted record -- After insert trigger.';
+	Set @audit_action = 'Inserted record -- After update trigger on TICKET.';
 
 	Insert into TICKET_AUDIT
 	(TicID, TicName, Audit_Action, Audit_TimeStamp) values (@ticID, @ticName, @audit_action, getdate());
 
-PRINT 'AFTER INSERT trigger fired.'
+PRINT 'AFTER UPDATE on TICKET trigger fired.'
 GO
-
