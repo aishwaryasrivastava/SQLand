@@ -98,7 +98,7 @@ CREATE TABLE MERCHANDISE
   Store_ID char(10) NOT NULL,
   Description varchar(140),
   Merch_Park_Section varchar(10) NOT NULL,
-  PRIMARY KEY (Store_ID))
+  PRIMARY KEY (Store_ID)
 );
 
 CREATE TABLE ITEM
