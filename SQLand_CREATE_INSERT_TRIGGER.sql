@@ -15,7 +15,7 @@ CREATE TABLE DEPARTMENT
   DName varchar(10) NOT NULL,
   Phone char(10) NOT NULL,
   Description varchar(140),
-  Location_ID char(5) NOT NULL,
+  Dept_Location_ID char(5) NOT NULL,
   PRIMARY KEY (Dept_ID),
   FOREIGN KEY (Dept_Location_ID) REFERENCES PARK(Location_ID)
 );
@@ -27,7 +27,7 @@ CREATE TABLE EMPLOYEE
   Name varchar(30) NOT NULL,
   Phone char(10) NOT NULL,
   Address varchar(30) NOT NULL,
-  Dept_ID char(10) NOT NULL,
+  Employee_Dept_ID char(10) NOT NULL,
   PRIMARY KEY (Employee_ID),
   FOREIGN KEY (Employee_Dept_ID) REFERENCES DEPARTMENT(Dept_ID)
 );
@@ -35,7 +35,7 @@ CREATE TABLE EMPLOYEE
 CREATE TABLE SECTION
 (
   Name varchar(10) NOT NULL,
-  Location_ID char(5) NOT NULL,
+  Section_Location_ID char(5) NOT NULL,
   PRIMARY KEY (Name),
   FOREIGN KEY (Section_Location_ID) REFERENCES PARK(Location_ID)
 );
@@ -45,7 +45,7 @@ CREATE TABLE ATTRACTION
   Attraction_ID char(10) NOT NULL,
   Name varchar(30) NOT NULL,
   Description varchar(140),
-  Park_Section varchar(10) NOT NULL,
+  Attr_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (Attraction_ID),
   FOREIGN KEY (Attr_Park_Section) REFERENCES SECTION(Name)
 );
@@ -56,7 +56,7 @@ CREATE TABLE FOOD_BEVERAGE
   Vendor varchar(10) NOT NULL,
   Description varchar(140),
   Type char(1) NOT NULL,
-  Park_Section varchar(10) NOT NULL,
+  FB_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (FB_ID),
   FOREIGN KEY (FB_Park_Section) REFERENCES SECTION(Name)
 );
@@ -67,7 +67,7 @@ CREATE TABLE LIVE_ENTERTAINMENT
   Start_Time time NOT NULL,
   End_Time time NOT NULL,
   Type char(1) NOT NULL,
-  Park_Section varchar(10) NOT NULL,
+  LE_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (Show_ID),
   FOREIGN KEY (LE_Park_Section) REFERENCES SECTION(Name)
 );
@@ -78,7 +78,7 @@ CREATE TABLE CHARACTER_EXPERIENCE
   Start_Time time NOT NULL,
   End_Time time NOT NULL,
   Description varchar(140),
-  Park_Section varchar(10) NOT NULL,
+  CE_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (Exp_ID),
   FOREIGN KEY (CE_Park_Section) REFERENCES SECTION(Name)
 );
@@ -86,7 +86,7 @@ CREATE TABLE CHARACTER_EXPERIENCE
 CREATE TABLE FIRST_AID
 (
   Location_ID char(10) NOT NULL,
-  Park_Section varchar(10) NOT NULL,
+  FA_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (Location_ID),
   FOREIGN KEY (FA_Park_Section) REFERENCES SECTION(Name)
 );
@@ -95,7 +95,9 @@ CREATE TABLE PHOTO_BOOTH
 (
   Booth_ID char(10) NOT NULL,
   Event_ID char(10) NOT NULL,
-  Park_Section varchar(10) NOT NULL,
+  PH_Park_Section varchar(10), NOT NULL
+  PH_Attr_Event_ID varchar(10), --Got rid of NOT NULL because a PB may be an attr or CE
+  PH_CE_Event_ID varchar(10),
   PRIMARY KEY (Booth_ID),
   FOREIGN KEY (PH_Park_Section) REFERENCES SECTION(Name),
   FOREIGN KEY (PH_Attr_Event_ID) REFERENCES ATTRACTION(Attraction_ID), 
@@ -106,7 +108,7 @@ CREATE TABLE MERCHANDISE
 (
   Store_ID char(10) NOT NULL,
   Description varchar(140),
-  Park_Section varchar(10) NOT NULL,
+  Merch_Park_Section varchar(10) NOT NULL,
   PRIMARY KEY (Store_ID),
   FOREIGN KEY (Merch_Park_Section) REFERENCES SECTION(Name)
 );
@@ -127,7 +129,7 @@ CREATE TABLE TICKET
   Holder_Addr varchar(30) NOT NULL,
   Holder_Age INT NOT NULL,
   Visit_Date date NOT NULL,
-  Location_ID char(5) NOT NULL,
+  Ticket_Location_ID char(5) NOT NULL,
   PRIMARY KEY (Ticket_ID),
   FOREIGN KEY (Ticket_Location_ID) REFERENCES PARK(Location_ID)
 );
@@ -141,7 +143,7 @@ CREATE TABLE HOTEL
   Check_In_Date date NOT NULL,
   Check_Out_Date date NOT NULL,
   Room_Type char(1) NOT NULL,
-  Park_ID char(5) NOT NULL,
+  Hotel_Park_ID char(5) NOT NULL,
   PRIMARY KEY (Room_Num),
   FOREIGN KEY (Hotel_Park_ID) REFERENCES PARK(Location_ID) --Needs checked
 );
@@ -150,16 +152,16 @@ CREATE TABLE TRANSPORTATION
 (
   Vehicle_ID char(10) NOT NULL,
   Type char(1) NOT NULL,
-  Park_Section varchar(10)
+  Trans_Park_Section varchar(10)
   PRIMARY KEY (Vehicle_ID),
   FOREIGN KEY (Trans_Park_Section) REFERENCES SECTION(Name)
 );
 
 CREATE TABLE SELLS_MERCH
 (
-  Store_ID char(10) NOT NULL,
-  Item_ID char(5) NOT NULL,
-  PRIMARY KEY (Store_ID, Item_ID),
+  Sell_Merch_Store_ID char(10) NOT NULL,
+  Sell_Merch_Item_ID char(5) NOT NULL,
+  PRIMARY KEY (Sell_Merch_Store_ID, Sell_Merch_Item_ID),
   FOREIGN KEY (Sell_Merch_Store_ID) REFERENCES MERCHANDISE(Store_ID),
   FOREIGN KEY (Sell_Merch_Item_ID) REFERENCES ITEM(Item_ID)
 );
