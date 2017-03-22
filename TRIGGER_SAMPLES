@@ -1,0 +1,8 @@
+
+  UPDATE [SQLand].[dbo].[TICKET] 
+	SET [Holder_age] = 16 
+	WHERE [Holder_Name] = 'Bob Feller';
+
+  UPDATE [SQLand].[dbo].[EMPLOYEE] 
+	SET [SSN] = '111111111' 
+	WHERE [Name] = 'Joyce Wallace';
