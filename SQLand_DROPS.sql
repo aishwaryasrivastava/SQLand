@@ -1,3 +1,4 @@
+use SQLand_PHASE2;
 ------------ DROPS -------------
 ALTER TABLE DEPARTMENT drop constraint DeptLoc;			
 ALTER TABLE EMPLOYEE drop constraint EmpDept;
@@ -7,12 +8,15 @@ ALTER TABLE FOOD_BEVERAGE drop constraint FBSect;
 ALTER TABLE LIVE_ENTERTAINMENT drop constraint LESect;
 ALTER TABLE CHARACTER_EXPERIENCE drop constraint CESect;
 ALTER TABLE FIRST_AID drop constraint FASect;
-ALTER TABLE PHOTO_BOOTH drop constraint PHSect, PHAttrID, PHCEID;
+ALTER TABLE PHOTO_BOOTH drop constraint PHSect;
+ALTER TABLE PHOTO_BOOTH drop constraint PHAttrID;
+ALTER TABLE PHOTO_BOOTH drop constraint PHCEID;
 ALTER TABLE MERCHANDISE drop constraint MerchSect;
 ALTER TABLE TICKET drop constraint TicketLoc;
 ALTER TABLE HOTEL drop constraint HotelLoc;
 ALTER TABLE TRANSPORTATION drop constraint TranSect;
-ALTER TABLE SELLS_MERCH drop constraint MerchStore, MerchID;
+ALTER TABLE SELLS_MERCH drop constraint MerchStore;
+ALTER TABLE SELLS_MERCH drop constraint MerchID;
 DROP TABLE PARK;
 DROP TABLE DEPARTMENT;
 DROP TABLE EMPLOYEE;
@@ -30,3 +34,4 @@ DROP TABLE HOTEL;
 DROP TABLE TRANSPORTATION;
 DROP TABLE SELLS_MERCH;
 DROP TABLE EMPLOYEE_AUDIT;
+DROP TABLE TICKET_AUDIT;
