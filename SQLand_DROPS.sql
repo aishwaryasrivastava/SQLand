@@ -1,4 +1,5 @@
-use SQLand_PHASE2;
+--	Sample scripts say that the USE command is not needed.
+--	USE SQLand_phase2
 ------------ DROPS -------------
 ALTER TABLE DEPARTMENT drop constraint DeptLoc;			
 ALTER TABLE EMPLOYEE drop constraint EmpDept;
