@@ -342,8 +342,28 @@ INSERT INTO SECTION values
 ('HorrorLand', '33333'),
 ('ToonLand', '33333'),
 ('SpaceLand', '33333');
-GO
 
+---------------------- ADD CONSTRAINTS--------------------
+
+ALTER TABLE DEPARTMENT add constraint DeptLoc FOREIGN KEY(Dept_Location_ID) REFRENCES PARK(Location_ID);
+ALTER TABLE EMPLOYEE add constraint EmpDept FOREIGN KEY(Employee_Dept_ID) REFRENCES DEPARTMENT(Dept_ID);
+ALTER TABLE SECTION add constraint SectLoc FOREIGN KEY(Section_Location_ID) REFRENCES DEPARTMENT(Park_Location_ID);
+ALTER TABLE ATTRACTION add constraint AttrSect FOREIGN KEY(Attr_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE FOOD_BEVERAGE add constraint FBSect FOREIGN KEY(FB_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE LIVE_ENTERTAINMENT add constraint LESect FOREIGN KEY(LE_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE CHARACTER_EXPERIENCE add constraint CESect FOREIGN KEY(CE_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE FIRST_AID add constraint FASect FOREIGN KEY(FA_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE PHOTO_BOOTH add constraint PHSect FOREIGN KEY(PH_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE PHOTO_BOOTH add constraint PHAttrID FOREIGN KEY(PH_Attr_Event_ID) REFRENCES ATTRACTION(Attraction_ID);
+ALTER TABLE PHOTO_BOOTH add constraint PHCEID FOREIGN KEY(PH_CE_Event_ID) REFRENCES CHARACTER_EXPERIENCE(Exp_ID);
+ALTER TABLE MERCHANDISE add constraint MerchSect FOREIGN KEY(Merch_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE TICKET add constraint TicketLoc FOREIGN KEY(Ticket_Location_ID) REFRENCES PARK(Location_ID);
+ALTER TABLE HOTEL add constraint HotelLoc FOREIGN KEY(Hotel_Park_ID) REFRENCES PARK(Location_ID);
+ALTER TABLE TRANSPORTATION add constraint TranSect FOREIGN KEY(Trans_Park_Section) REFRENCES SECTION(Name);
+ALTER TABLE SELLS_MERCH add constraint MerchStore FOREIGN KEY(Sell_Merch_Store_ID) REFRENCES MERCHANDISE(Store_ID);
+ALTER TABLE SELLS_MERCH add constraint MerchID FOREIGN KEY(Sell_Merch_Item_ID) REFRENCES ITEM(Item_ID);
+
+GO
 ------------------------- TRIGGERS -----------------------
 
 CREATE TRIGGER trgAfterUpdateOnEmployee ON EMPLOYEE
